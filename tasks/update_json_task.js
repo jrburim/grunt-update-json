@@ -17,16 +17,5 @@ module.exports = function(grunt){
       updateJSON(grunt, this.files, this.data.fields, this.options());
     };
 
-  // handle the degenerate case
-  if(!grunt.config.data[updateJSON.taskName]){
-    register = grunt.registerTask;
-    task = function(target){
-      // use default options
-      var targets = target ? _.pick(defaultOptions, target) : defaultOptions;
-      _.each(targets, function(obj, key){
-        updateJSON(grunt, obj.files, obj.fields);
-      });
-    };
-  }
   register(updateJSON.taskName, updateJSON.taskDescription, task);
 };
